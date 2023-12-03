@@ -7,16 +7,24 @@ using UnityEngine.UIElements;
 public class spawn : MonoBehaviour
 {
     public GameObject prefab;
+    public float Spawncooldown = 1f;
+    private float t;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        t += Time.deltaTime;
+        if (t > Spawncooldown)
+        {
+            t = 0f;
+            spawnag();
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    private void spawnag()
     {
-        //Instantiate(original, position, rotation, parent);
+        GameObject newGO = Instantiate(prefab, transform.position, Quaternion.identity);
+
     }
 }
